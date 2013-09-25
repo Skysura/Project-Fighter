@@ -37,11 +37,12 @@ public class Fireball extends EntityManager implements Entity{
 	public void init() {
 		SPEED = 20;
 	}
-
+	//test
 	int i = 0;
 	
 	public void update() {
 		x += SPEED * FACING;
+		//test
 		i++;
 		if(i == 10)
 			removeEntity(this);

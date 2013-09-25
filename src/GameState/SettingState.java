@@ -26,7 +26,8 @@ public class SettingState extends GameState{
 	};
 	
 	private String[] resolution = {
-		"1280:960"
+		"1280:960",
+		"640:480"
 	};
 
 	public SettingState(GameStateManager gsm) {
@@ -110,6 +111,13 @@ public class SettingState extends GameState{
 		if(showResolutionMenu){
 			if(currentChoice == 0){
 				showResolutionMenu = false;
+				gsm.setResolution(1280, 960);
+				gsm.setChanged(true);
+			}
+			if(currentChoice == 1){
+				showResolutionMenu = false;
+				gsm.setResolution(1280/2, 960/2);
+				gsm.setChanged(true);
 			}
 		}
 		

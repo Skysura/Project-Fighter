@@ -1,5 +1,6 @@
 package GameState;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -13,6 +14,10 @@ public class GameStateManager{
 	public static final int SETTINGSTATE = 1;
 	public static final int TESTLEVEL = 2;
 	
+	private static int WIDTH;
+	private static int HEIGHT;
+	private static boolean changed = false;
+	
 	public GameStateManager() {
 		gameStates = new ArrayList<GameState>();
 		currentState = MENUSTATE;
@@ -20,6 +25,33 @@ public class GameStateManager{
 		gameStates.add(new SettingState(this));
 		gameStates.add(new TestLevel(this));
 	}
+	
+	public int getState(){
+		return currentState;
+	}
+	
+// Test Starts
+	public void setResolution(int WIDTH, int HEIGHT){
+		this.WIDTH = WIDTH;
+		this.HEIGHT = HEIGHT;
+		
+	}
+	
+	public void setChanged(boolean changed){
+		this.changed = changed;
+	}
+	
+	public boolean getChanged(){
+		if(changed)
+			return true;
+		return false;
+	}
+	
+	public Dimension getResolution(){
+		Dimension screen = new Dimension(WIDTH, HEIGHT);
+		return screen;
+	}
+	// Test Ends
 	
 	public void setState(int state){
 		currentState = state;

@@ -17,8 +17,8 @@ import GameState.GameStateManager;
 public class GamePanel extends JPanel implements Runnable, KeyListener, MouseListener{
 	
 	//dimensions
-	public static final int WIDTH = 1280;
-	public static final int HEIGHT = 960;
+	public static int WIDTH = 1280;
+	public static int HEIGHT = 960;
 	public static final int SCALE = 1;
 	
 	//game thread
@@ -71,6 +71,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 			
 			start = System.nanoTime();
 			elapsed=System.nanoTime() - start;
+			
+
 			
 			update();
 			draw();

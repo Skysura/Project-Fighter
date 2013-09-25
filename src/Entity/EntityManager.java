@@ -16,6 +16,7 @@ public class EntityManager implements Entity{
 	private ArrayList list;
 	
 	public void update() {
+		//updating all entities update
 		Iterator it = getEntities().iterator();
 		
 		while(it.hasNext()){
@@ -24,6 +25,7 @@ public class EntityManager implements Entity{
 	}
 
 	public void draw(Graphics2D g) {
+		//updating all entities draw
 		Iterator it = getEntities().iterator();
 		
 		while(it.hasNext()){

@@ -1,6 +1,11 @@
+
+.settings/
+bin/
+
 *.class
 
 # Package Files #
 *.jar
 *.war
 *.ear
+**/Thumbs.db

@@ -15,6 +15,11 @@ public class SettingState extends GameState{
 	private int currentChoice = 0;
 	private boolean showResolutionMenu = false;
 	
+	private int[] x;
+	private int[] y;
+	private int[] dx;
+	private int[] dy;
+	
 	private String gameName = "Settings";
 	private Color titleColor;
 	private Font titleFont;
@@ -44,10 +49,18 @@ public class SettingState extends GameState{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		init();
 		
 	}
 
-	public void init() {}
+	public void init() {
+
+		x = new int[options.length];
+		y = new int[options.length];
+		dx = new int[options.length];
+		dy = new int[options.length];
+		}
+	
 	public void update() {
 		bg.update();
 	}
@@ -169,7 +182,23 @@ public class SettingState extends GameState{
 		}
 	}
 	public void keyReleased(int k) {}
-	public void mousePressed(Point pos) {}
+	public void mousePressed(Point pos) {
+		for(int i = 0; i < options.length; i++){
+			System.out.println(x[i] + " " + y[i] + " " + dx[i] + " " + dy[i]);
+		if(pos.getX() > x[i] && pos.getX() < dx[i] && pos.getY() < y[i] && pos.getY() > dy[i]){
+			System.out.println(currentChoice + " I=" + i);
+			currentChoice = i;
+			System.out.println(currentChoice);
+			select();
+		}
+		}
+	}
 	public void mouseReleased(Point pos) {}
+
+	@Override
+	public void mouseMoved(Point pos) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

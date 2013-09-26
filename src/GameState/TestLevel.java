@@ -50,4 +50,10 @@ public class TestLevel extends GameState{
 	public void mousePressed(Point pos) {}
 	public void mouseReleased(Point pos) {}
 
+	@Override
+	public void mouseMoved(Point pos) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

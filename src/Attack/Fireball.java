@@ -27,7 +27,7 @@ public class Fireball extends EntityManager implements Entity{
 		this.FACING = FACING;
 		init();
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/spell/fireball.jpg"));
+			image = ImageIO.read(getClass().getResourceAsStream("/spell/fireball.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -42,6 +42,12 @@ public class Fireball extends EntityManager implements Entity{
 	
 	public void update() {
 		x += SPEED * FACING;
+		if(x > GamePanel.WIDTH){
+			FACING *= -1;
+		}
+		if(x < 0){
+			FACING *= -1;
+		}
 		//test
 		i++;
 		if(i == 10)

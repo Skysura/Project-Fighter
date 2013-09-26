@@ -2,9 +2,11 @@ package GameState;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import Main.GamePanel;
@@ -15,11 +17,17 @@ public class MenuState extends GameState{
 	private GameStateManager gsm;
 	private Background bg;
 	private int currentChoice = 0;
+	private int hover;
 	
 	private String gameName = "Project Fighter";
 	private Color titleColor;
 	private Font titleFont;
 	private Font font;
+	
+	private int[] x;
+	private int[] y;
+	private int[] dx;
+	private int[] dy;
 	
 	
 	
@@ -44,10 +52,17 @@ public class MenuState extends GameState{
 			e.printStackTrace();
 		}
 		
+		init();
+		
 		
 	}
 
-	public void init() {}
+	public void init() {
+		x = new int[options.length];
+		y = new int[options.length];
+		dx = new int[options.length];
+		dy = new int[options.length];
+	}
 	public void update() {
 		bg.update();
 	}
@@ -67,16 +82,31 @@ public class MenuState extends GameState{
 		//draw menu options
 		g.setFont(font);
 		for(int i = 0; i < options.length; i++){
+		    
+			FontMetrics fm = g.getFontMetrics();
+		    Rectangle2D rect = fm.getStringBounds(options[i], g);
 			
 			width =  GamePanel.WIDTH / 8 ;
 			height = GamePanel.HEIGHT / 4 + i * 50;
+			
+			x[i] = width;
+			y[i] = height;
+			dx[i] = width + (int) rect.getWidth();
+			dy[i] = height - (int) rect.getHeight();
+			
+			
 			if(currentChoice == i){
 				g.setColor(Color.cyan);
 			}
 			else
 				g.setColor(Color.blue);
-			g.drawString(options[i], width , GamePanel.HEIGHT / 4 + i * 50);
+			g.drawString(options[i], width , height);
+		
 		}
+		
+
+		
+		
 	}
 	
 	public void select(){
@@ -113,10 +143,29 @@ public class MenuState extends GameState{
 	}
 	public void keyReleased(int k) {}
 	public void mousePressed(Point pos) {
-		System.out.println(pos);
+		for(int i = 0; i < options.length; i++){
+			System.out.println(x[i] + " " + y[i] + " " + dx[i] + " " + dy[i]);
+		if(pos.getX() > x[i] && pos.getX() < dx[i] && pos.getY() < y[i] && pos.getY() > dy[i]){
+			System.out.println(currentChoice + " I=" + i);
+			currentChoice = i;
+			System.out.println(currentChoice);
+			select();
+		}
+		}
 	}
 	public void mouseReleased(Point pos) {
-		System.out.println(pos);
+	}
+
+	@Override
+	public void mouseMoved(Point pos) {
+		System.out.println("asd");
+		for(int i = 0; i < options.length; i++){
+			System.out.println(x[i] + " " + y[i] + " " + dx[i] + " " + dy[i]);
+		if(pos.getX() > x[i] && pos.getX() < dx[i] && pos.getY() < y[i] && pos.getY() > dy[i]){
+			hover = i;
+			select();
+		}
+		}
 	}
 
 }

@@ -91,5 +91,10 @@ public class GameStateManager{
 		gameStates.get(currentState).mouseReleased(pos);
 		
 	}
+	
+	public void mouseMoved(int x, int y){
+		Point pos = new Point(x, y);
+		gameStates.get(currentState).mouseReleased(pos);
+	}
 
 }
